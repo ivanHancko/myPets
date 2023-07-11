@@ -26,9 +26,6 @@ user: User[] = []
       }
     })
   }
-  openSingUp(): void {
-    const modalRef = this.modalService.open(SingupComponent);
 
-  }
 
 }

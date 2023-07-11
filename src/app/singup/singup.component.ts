@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
 import { MypetsService } from '../service/mypets.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-singup',
@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SingupComponent implements OnInit {
 
-validPasswords: boolean = false;
+validPasswords = true;
 idUser: number = 0;
 
 item: User[] = [];
@@ -26,6 +26,8 @@ item: User[] = [];
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
   })
+
+
 
   get firstName() {
     return this.form.get('firstName')
@@ -45,24 +47,25 @@ item: User[] = [];
 
 
   ngOnInit(): void {
+  }
 
-  }
-  openLogIn(): void {
-    const modalRef = this.modalService.open(LoginComponent);
-  }
 
   addUser() : void {
-
-      this.validPasswords = true;
+    if (this.password?.value != this.confirmPassword?.value) {
+      this.validPasswords = false;
+      return;
+    }else{
     let user: User = new User(this.form.value)
     this.service.addUser(user).subscribe({
       next :(user: User) => {
-        this.router.navigate(['singup']);
-        this.form.reset();
+        this.validPasswords = true;
+        this.router.navigate(['/login']);
       }
     })
 
   }
+  this.form.reset();
+}
 
 
 }
