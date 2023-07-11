@@ -17,4 +17,8 @@ export class MypetsService {
       return data.map((elem:any) => new User(elem))
     }))
   }
+
+  addUser(user: User) : Observable<any> {
+    return this.http.post(url + '/', user)
+  }
 }

@@ -1,27 +1,34 @@
 <div class="row">
   <div class="col-8 offset-2">
-    <form>
+    <form [formGroup]="form">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Ime">
+        <input formControlName="firstName" type="text" class="form-control" placeholder="Ime">
+        <small class="text-danger" *ngIf="firstName?.touched && firstName?.errors?.['required']"> First Name is required! </small>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Prezime">
+        <input  formControlName="lastName" type="text" class="form-control" placeholder="Prezime">
+        <small class="text-danger" *ngIf="lastName?.touched && lastName?.errors?.['required']"> Last Name is required! </small>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        <input  formControlName="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']"> Email is required! </small>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Lozinka">
+        <input formControlName="password" type="password" class="form-control" id="inputPassword4" placeholder="Lozinka">
+        <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">Password is required</small>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Ponovljena lozinka">
+        <input  formControlName="confirmPassword" type="password" class="form-control" id="inputPassword4" placeholder="Ponovljena lozinka">
+        <small class="text-danger" *ngIf="confirmPassword?.touched && confirmPassword?.errors?.['required']">Password is required</small>
+      </div>
+      <div class="row">
+      <div class="col">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-warning" (click)="addUser()" (click)="openLogIn()">Registruj se</button>
       </div>
       <div class="col">
-        <button type="submit" class="btn btn-warning">Registruj se</button>
+        <a (click)="openLogIn()" > <b>Već imaš nalog?</b> </a>
       </div>
-      <div class="col">
-        <a (click)="openLogIn()" >   <b>Već imaš nalog?</b> </a>
-      </div>
+    </div>
   </form>
 </div>
 </div>
