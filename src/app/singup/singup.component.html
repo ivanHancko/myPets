@@ -1,1 +1,27 @@
-<p>singup works!</p>
+<div class="row">
+  <div class="col-5 offset-3">
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Ime">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Prezime">
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Lozinka">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Ponovljena lozinka">
+      </div>
+      <div class="col-4 offset-9">
+        <button type="submit" class="btn btn-warning">Registruj se</button>
+      </div>
+      <div class="col-4 offset-9">
+        <a [routerLink]="['/login']" >   <b>Već imaš nalog?</b> </a>
+      </div>
+  </form>
+</div>
+</div>

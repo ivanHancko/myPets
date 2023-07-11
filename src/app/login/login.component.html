@@ -1,1 +1,18 @@
-<p>login works!</p>
+<div class="row">
+  <div class="col-5 offset-3">
+    <form>
+      <div class="form-group">
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+      </div>
+      <div class="col-4 offset-10">
+        <button type="submit" class="btn btn-warning">Log in</button>
+      </div>
+      <div class="col-4 offset-9">
+        <a [routerLink]="['/singup']" >   <b>Kreiraj novi nalog</b> </a>
+      </div>
+    </form>
+  </div>
+</div>
