@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-5 offset-3">
+  <div class="col-8 offset-2">
     <form>
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Ime">
@@ -16,11 +16,11 @@
       <div class="form-group">
         <input type="password" class="form-control" id="inputPassword4" placeholder="Ponovljena lozinka">
       </div>
-      <div class="col-4 offset-9">
+      <div class="col">
         <button type="submit" class="btn btn-warning">Registruj se</button>
       </div>
-      <div class="col-4 offset-9">
-        <a [routerLink]="['/login']" >   <b>Već imaš nalog?</b> </a>
+      <div class="col">
+        <a (click)="openLogIn()" >   <b>Već imaš nalog?</b> </a>
       </div>
   </form>
 </div>

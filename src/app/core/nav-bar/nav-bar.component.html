@@ -1,5 +1,7 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">MY PET</a>
+  <img class="brand" src="../assets/img/cat-solid.svg" alt="" width="2%"> <i class="navbar-brand brand fa-solid fa-dog" >My Pets</i> <img src="../assets/img/dog-solid.svg" alt="" width="2%">
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
@@ -12,10 +14,10 @@
     </ul>
     <ul class="navbar-nav ms-auto">
       <li class="nav-item">
-        <a class="nav-link"  [routerLink]="['singup']"  >Registracija</a>
+        <a class="nav-link"  (click)="openSingUp()" >Registracija</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  [routerLink]="['login']"  >Prijava</a>
+        <a class="nav-link"  (click)="openLogIn()"  >Prijava</a>
       </li>
     </ul>
   </div>

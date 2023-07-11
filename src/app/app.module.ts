@@ -9,7 +9,8 @@ import { AboutComponent } from './core/about/about.component';
 import { NavBarComponent } from './core/nav-bar/nav-bar.component';
 import { SingupComponent } from './singup/singup.component';
 import { LoginComponent } from './login/login.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,9 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
