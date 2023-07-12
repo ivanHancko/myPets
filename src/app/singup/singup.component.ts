@@ -1,7 +1,6 @@
 import { User } from './../model/mypets.model';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from '../login/login.component';
 import { MypetsService } from '../service/mypets.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -51,6 +50,13 @@ item: User[] = [];
 
 
   addUser() : void {
+    let users : User[] = []
+
+    for (let item of users) {
+if(item.email == this.form.value.email) {
+  this.validPasswords = false;
+}
+    }
     if (this.password?.value != this.confirmPassword?.value) {
       this.validPasswords = false;
       return;
@@ -59,6 +65,7 @@ item: User[] = [];
     this.service.addUser(user).subscribe({
       next :(user: User) => {
         this.validPasswords = true;
+
         this.router.navigate(['/login']);
       }
     })

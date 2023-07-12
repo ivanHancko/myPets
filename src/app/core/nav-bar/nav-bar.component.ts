@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/login/login.component';
 import { SingupComponent } from 'src/app/singup/singup.component';
@@ -9,6 +9,8 @@ import { SingupComponent } from 'src/app/singup/singup.component';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+
+
 
   constructor(private modalService: NgbModal) { }
 

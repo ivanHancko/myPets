@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-4 offset-3">
-    <form>
+    <form [formGroup]="form">
       <div class="form-group">
-        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        <input formControlName="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+        <input formControlName="password" type="password" class="form-control ng-untouched ng-pristine ng-invalid" ng-reflect-name="password" id="inputPassword4" placeholder="Password">
       </div>
       <div class="row-2 offset-8">
         <div class="col">
-          <button type="submit" class="btn btn-warning">Log in</button>
+          <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="getUser()">Log in</button>
         </div>
       <div class="col">
         <a [routerLink]="['/singup']" >   <b>Kreiraj novi nalog</b> </a>
@@ -18,4 +18,13 @@
     </div>
     </form>
   </div>
+</div>
+<div class="row">
+  <div class="col">
+    <p> {{firstName}}  {{LastName}} </p>
+    <p> {{_email}} </p>
+
+  </div>
+
+
 </div>

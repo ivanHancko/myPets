@@ -11,6 +11,7 @@ import { SingupComponent } from './singup/singup.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { UserItemComponent } from './core/user-item/user-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     AboutComponent,
     NavBarComponent,
     SingupComponent,
-    LoginComponent
+    LoginComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
