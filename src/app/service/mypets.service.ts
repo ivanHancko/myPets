@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Pet, User } from '../model/mypets.model';
+import { Pet, SlideShow, User } from '../model/mypets.model';
 
 const url = 'http://localhost:3000/api/user'
 
@@ -51,5 +51,13 @@ getPet (id: number) : Observable<Pet> {
   }
   update(pet: Pet): Observable<any> {
     return this.http.put('http://localhost:3000/api/pets/' + pet._id, pet);
+  }
+
+  getSlideShow(): Observable<SlideShow[]> {
+    return this.http.get('http://localhost:3000/api/slideshow').pipe(
+      map((data: any) => {
+        return data && data.map((elem: any) => new SlideShow(elem) || []);
+      })
+    );
   }
 }

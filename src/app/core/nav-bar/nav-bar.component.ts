@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/model/mypets.model';
+import { Component, OnInit } from '@angular/core';
+
 
 
 @Component({
