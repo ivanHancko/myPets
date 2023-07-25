@@ -1,0 +1,76 @@
+
+<p class="text" style="background-color: rgb(255, 253, 127);">Zdravo, {{user.firstName}} ! Tvoj ID je {{user._id}}</p>
+
+<div class="row" *ngIf="showText">
+
+  <h1>Moj ljubimac se zove {{petsName}} !</h1>
+  <h3>{{petsName}} je {{petsCategory}}. </h3>
+  <h3> Moj {{petsCategory}} ima {{petsAge}} {{_age}} i {{petsGender}} je pol. </h3>
+  <h3>{{_gender}} je rase {{petsBreed}}.</h3>
+
+  <div class="col-4">
+    <button class="btn btn-dark" (click)="onclick()">Izmeni podatke o svom ljubimcu</button>
+  </div>
+</div>
+
+<div class="col-4">
+  <button class="btn btn-dark" (click)="onclick()" *ngIf="!showText">Dodaj svog ljubimca</button>
+</div>
+
+  <div class="row">
+
+    <div class="col-4 offset-3" *ngIf="visible">
+      <form [formGroup]="form">
+
+        <div class="form-group">
+          <input formControlName="name" type="text" class="form-control" id="name" placeholder="Ime ljubimca">
+          <small class="text-danger" *ngIf="name?.touched && name?.errors?.['required']">Ime je obavezno!</small>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="category" type="text" class="form-control" id="category" placeholder="Kategorija">
+          <small class="text-danger" *ngIf="category?.touched && category?.errors?.['required']">Kategorija je obavezna!</small>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="breed" type="text" class="form-control" id="breed" placeholder="Rasa">
+          <small class="text-danger" *ngIf="breed?.touched && breed?.errors?.['required']">Rasa je obavezna!</small>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="gender" type="text" class="form-control" id="gender" placeholder="Pol">
+          <small class="text-danger" *ngIf="gender?.touched && gender?.errors?.['required']">Pol je obavezan!</small>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="age" type="number" class="form-control" id="age" placeholder="Godina">
+          <small class="text-danger" *ngIf="age?.touched && age?.errors?.['required']">Godina ljubimca je obavezna!</small>
+        </div>
+
+        <div class="row-2 offset-8">
+          <div class="col">
+            <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="updatePet()" *ngIf="showText">Izmeni svog ljubimca</button>
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="addPet()" *ngIf="!showText">Unesi svog ljubimca</button>
+          </div>
+
+      </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- <button class="btn btn-link" (click)="onDelete(user)">Delete</button> -->

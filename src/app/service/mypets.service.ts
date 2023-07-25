@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import {  Cake, User } from '../model/mypets.model';
+import { Pet, User } from '../model/mypets.model';
 
 const url = 'http://localhost:3000/api/user'
 
@@ -22,15 +22,34 @@ export class MypetsService {
     return this.http.post(url + '/', user)
   }
 
-  getOne(userId: number): Observable<User> {
-    return this.http.get(url +  '/' + userId).pipe(map((data:any) => {
+  getOne(id: number): Observable<User> {
+    return this.http.get(url +  '/' + id).pipe(map((data:any) => {
+      return new User(data);
+    }))
+  }
+  delete(user: User): Observable<User> {
+    return this.http.delete(url + '/' + user._id).pipe(map((data:any) => {
       return new User(data);
     }))
   }
 
-  getCakes(): Observable<Cake[]> {
-    return this.http.get('http://localhost:3000/api/cakes').pipe(map((data:any) => {
-      return data.map((elem:any) => new Cake(elem))
+  getPets () : Observable<Pet[]> {
+    return this.http.get('http://localhost:3000/api/pets').pipe(map((data:any) => {
+      return data.map((elem:any) => new Pet(elem))
     }))
+  }
+
+getPet (id: number) : Observable<Pet> {
+  return this.http.get('http://localhost:3000/api/pets' + id).pipe(map((data:any) => {
+    return new Pet(data);
+  }))
+}
+
+
+  add(pet: Pet) : Observable<any> {
+    return this.http.post('http://localhost:3000/api/pets', pet)
+  }
+  update(pet: Pet): Observable<any> {
+    return this.http.put('http://localhost:3000/api/pets/' + pet._id, pet);
   }
 }

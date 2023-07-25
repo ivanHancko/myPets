@@ -53,10 +53,11 @@ item: User[] = [];
     let users : User[] = []
 
     for (let item of users) {
-if(item.email == this.form.value.email) {
-  this.validPasswords = false;
-}
+      if(item.email == this.form.value.email) {
+        this.validPasswords = false;
+        }
     }
+
     if (this.password?.value != this.confirmPassword?.value) {
       this.validPasswords = false;
       return;
@@ -65,7 +66,6 @@ if(item.email == this.form.value.email) {
     this.service.addUser(user).subscribe({
       next :(user: User) => {
         this.validPasswords = true;
-
         this.router.navigate(['/login']);
       }
     })

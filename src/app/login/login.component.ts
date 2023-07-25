@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MypetsService } from '../service/mypets.service';
-import { Cake, User } from '../model/mypets.model';
+import { User } from '../model/mypets.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,11 +16,9 @@ export class LoginComponent implements OnInit {
 
 user: User[] = []
 userId: number = 0;
-firstName: string = ""
-LastName: string = "";
-_email: string = "";
 
 
+ifLogged = false;
 
 form: FormGroup = new FormGroup ({
   email: new FormControl('', [Validators.required]),
@@ -42,13 +40,12 @@ get password() {
       next: (data: User[]) =>{
         for (let i of data) {
           if (i.email == this.form.value.email && i.password == this.password?.value){
-            this.firstName = i.firstName
-            this.LastName = i.lastName
-            this._email = this.form.value.email
+            this.form.reset()
+            this.router.navigate(['/user/', i._id]);
           }
         }
-      this.form.reset()
       }
     })
   }
+
 }

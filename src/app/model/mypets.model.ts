@@ -14,20 +14,23 @@ export class User {
   }
 }
 
-export class Cake {
-
-
+export class Pet {
   _id: number;
   name: string;
-  ingredients:string;
-description: string;
-origin:string;
+  category: string;
+  breed: string;
+  gender: string;
+  age: number;
 
-constructor(obj?:any) {
-  this._id = obj && obj._id || 0;
-  this.name = obj && obj.name || "";
-  this.ingredients = obj && obj.ingredients || "";
-  this.description = obj && obj.description || "";
-  this.origin = obj && obj.origin || "";
+  constructor(obj?:any) {
+    this._id = obj && obj._id || 0;
+    this.name = obj && obj.name || "";
+    this.category = obj && obj.category || "";
+    this.breed = obj && obj.breed || "";
+    this.gender = obj && obj.gender || "";
+    this.age = obj && obj.age || 0;
+  }
+
 }
-}
+
+
