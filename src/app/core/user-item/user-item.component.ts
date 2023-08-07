@@ -33,14 +33,12 @@ _gender: string = "";
 
 
 form: FormGroup = new FormGroup ({
-
   name: new FormControl('', [Validators.required]),
   category: new FormControl('', [Validators.required]),
   breed: new FormControl('', [Validators.required]),
   gender: new FormControl('', [Validators.required]),
   age: new FormControl(0, [Validators.required]),
 })
-
 get name() { return this.form.get("name"); }
 get category() { return this.form.get("category"); }
 get breed() { return this.form.get("breed"); }

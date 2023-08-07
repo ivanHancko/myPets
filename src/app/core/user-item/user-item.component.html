@@ -1,5 +1,12 @@
+<nav  *ngIf="showText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link"  [routerLink]="['/user/', user._id]" >Zdravo, {{user.firstName}} ! Tvoj ID je {{user._id}}</a>
+      </li>
+    </ul>
+</nav>
 
-<p class="text" style="background-color: rgb(255, 253, 127);">Zdravo, {{user.firstName}} ! Tvoj ID je {{user._id}}</p>
+
 
 <div class="row" *ngIf="showText">
 

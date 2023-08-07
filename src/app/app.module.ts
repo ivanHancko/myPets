@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { UserItemComponent } from './core/user-item/user-item.component';
+import { PetItemComponent } from './pet-item/pet-item.component';
 
 
 
@@ -26,7 +27,8 @@ import { UserItemComponent } from './core/user-item/user-item.component';
     NavBarComponent,
     SingupComponent,
     LoginComponent,
-    UserItemComponent
+    UserItemComponent,
+    PetItemComponent
   ],
   imports: [
     BrowserModule,

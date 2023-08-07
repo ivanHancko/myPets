@@ -50,13 +50,6 @@ item: User[] = [];
 
 
   addUser() : void {
-    let users : User[] = []
-
-    for (let item of users) {
-      if(item.email == this.form.value.email) {
-        this.validPasswords = false;
-        }
-    }
 
     if (this.password?.value != this.confirmPassword?.value) {
       this.validPasswords = false;
