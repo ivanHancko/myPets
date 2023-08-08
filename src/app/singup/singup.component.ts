@@ -1,5 +1,5 @@
 import { User } from './../model/mypets.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MypetsService } from '../service/mypets.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
 })
 export class SingupComponent implements OnInit {
 
-validPasswords = true;
+
+isUser: boolean = true;
+validPasswords: boolean = true;
 idUser: number = 0;
 
 item: User[] = [];
@@ -46,18 +48,27 @@ item: User[] = [];
 
 
   ngOnInit(): void {
+    this.getUser()
+
   }
 
 
   addUser() : void {
-
+for(let item of this.item) {
+  if(item.email === this.email?.value){
+    this.isUser = false;
+    return
+  }
+}
     if (this.password?.value != this.confirmPassword?.value) {
       this.validPasswords = false;
       return;
+
     }else{
     let user: User = new User(this.form.value)
     this.service.addUser(user).subscribe({
       next :(user: User) => {
+        this.isUser = true;
         this.validPasswords = true;
         this.router.navigate(['/login']);
       }
@@ -67,5 +78,15 @@ item: User[] = [];
   this.form.reset();
 }
 
+
+getUser(): void {
+  this.service.getUsers().subscribe({
+    next: (data: User[]) =>{
+     this.item = data
+     console.log(data);
+
+    }
+  })
+}
 
 }

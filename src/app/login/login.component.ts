@@ -18,7 +18,7 @@ user: User[] = []
 userId: number = 0;
 
 
-ifLogged = false;
+ifLogged: boolean = true;
 
 form: FormGroup = new FormGroup ({
   email: new FormControl('', [Validators.required]),
@@ -41,11 +41,12 @@ get password() {
         for (let i of data) {
           if (i.email == this.form.value.email && i.password == this.password?.value){
             alert("Success!");
+            this.ifLogged = true;
             this.form.reset()
             this.router.navigate(['/user/', i._id]);
             return
           }else{
-            alert("Error, email or password didn't match!");
+            this.ifLogged = false;
             return
           }
         }

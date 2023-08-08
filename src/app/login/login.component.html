@@ -1,7 +1,7 @@
 <p style=" background-color: rgb(255, 253, 127); height: 20px;" ></p>
 <div class="row">
   <div class="col-4 offset-3">
-    <form [formGroup]="form" *ngIf="!ifLogged">
+    <form [formGroup]="form">
       <div class="form-group">
         <input formControlName="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
         <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required']">Email je obavezan!</small>
@@ -10,9 +10,11 @@
         <input formControlName="password" type="password" class="form-control" ng-reflect-name="password" id="inputPassword4" placeholder="Password">
         <small class="text-danger" *ngIf="password?.touched && password?.errors?.['required']">Lozinka je obavezna!</small>
       </div>
+      <small class="text-danger" *ngIf="!ifLogged">Email ili lozinka nisu ispravni!</small>
       <div class="row-2 offset-8">
         <div class="col">
           <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="getUser()">Log in</button>
+
         </div>
       <div class="col">
         <a [routerLink]="['/singup']" >   <b>Kreiraj novi nalog</b> </a>
