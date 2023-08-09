@@ -21,6 +21,7 @@ export class Pet {
   breed: string;
   gender: string;
   age: number;
+  registration: number;
 
   constructor(obj?:any) {
     this._id = obj && obj._id || 0;
@@ -29,6 +30,7 @@ export class Pet {
     this.breed = obj && obj.breed || "";
     this.gender = obj && obj.gender || "";
     this.age = obj && obj.age || 0;
+    this.registration = obj && obj.registration || 0;
   }
 
 }

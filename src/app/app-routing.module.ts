@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { UserItemComponent } from './core/user-item/user-item.component';
 import { PetItemComponent } from './pet-item/pet-item.component';
 
+
 const routes: Routes = [
   {path: 'home', component: HomeComponent },
   {path: 'about', component: AboutComponent },

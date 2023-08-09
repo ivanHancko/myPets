@@ -38,12 +38,16 @@ form: FormGroup = new FormGroup ({
   breed: new FormControl('', [Validators.required]),
   gender: new FormControl('', [Validators.required]),
   age: new FormControl(0, [Validators.required]),
+  registration: new FormControl(0, [Validators.required]),
 })
+
+
 get name() { return this.form.get("name"); }
 get category() { return this.form.get("category"); }
 get breed() { return this.form.get("breed"); }
 get gender() { return this.form.get("gender"); }
 get age() { return this.form.get("age"); }
+get registration() { return this.form.get("registration"); }
 
 
   constructor(private service: MypetsService, private route: ActivatedRoute, private router: Router) { }
@@ -62,9 +66,13 @@ get age() { return this.form.get("age"); }
   getPets() : void {
     this.service.getPets().subscribe({
       next: (data:Pet[]) => {
+        this.pets = data
+
         for(let item of data) {
-          if(this.user._id == item._id) {
-            console.log(this.user._id, item._id);
+          if(this.user._id === item.registration) {
+
+            console.log(this.user._id, item.registration);
+
             this.showText= true
             this.petsName = item.name;
             this.petsCategory = item.category;
@@ -75,6 +83,7 @@ get age() { return this.form.get("age"); }
               }else{
                 this._gender = "Ona"
               }
+
             this.petsAge = item.age;
               if(item.age == 1) {
                 this._age = "godinu"
@@ -83,8 +92,9 @@ get age() { return this.form.get("age"); }
               }else if(item.age >=5) {
                 this._age = "godina"
               }
+
             console.log(data);
-            this.pets = data
+
           }
         }
       }
@@ -115,32 +125,49 @@ get age() { return this.form.get("age"); }
 
   updatePet(): void {
     let pet: Pet = new Pet(this.form.value)
-    let id: number = this.userId
-  this.errorText = false;
-    if (id) {
-      pet._id = id;
-      this.service.update(pet).subscribe({
-        next: (response: any) => {
-          this.ngOnInit()
-          this.visible = false
+    console.log(this.pet._id);
+
+    for(let item of this.pets) {
+      if(this.user._id == item.registration){
+        let id: number = item._id
+        this.errorText = false;
+        if (id) {
+          pet._id = id;
+          if(this.registration?.value != item.registration){
+            alert('Molim unesite vaš ID broj!')
+            console.log(this.registration?.value, item.registration);
+            return;
+          }else{
+            this.service.update(pet).subscribe({
+              next: (response: any) => {
+                this.ngOnInit()
+                this.visible = false
+              }
+            });
+          }
         }
-      });
+      }
     }
   }
 
-  addPet(): void {
-    let pet: Pet = new Pet(this.form.value)
+addPet(): void {
+  let pet: Pet = new Pet(this.form.value)
 
-      this.service.add(pet).subscribe({
-        next :(book: any) => {
-          console.log(book);
-         this.ngOnInit()
-         this.visible = false
-          }
-      });
+    if(this.registration?.value != this.user._id){
+      alert('Molim unesite vaš ID broj!')
+      console.log(this.registration?.value, this.user._id);
+      return;
+    }else{
+    this.service.add(pet).subscribe({
+      next :(book: any) => {
+        console.log(book);
+        this.ngOnInit()
+        this.visible = false
+        }
+    });
     }
 
-
+  }
 
   onclick() : void {
     this.visible = !this.visible
