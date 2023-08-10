@@ -1,35 +1,36 @@
-<nav>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link"  [routerLink]="['/user/', user._id]" >Zdravo, {{user.firstName}} ! Tvoj ID je {{user._id}}</a>
-      </li>
-    </ul>
-</nav>
+<div class="wellcome">
 
+        <p class="text">Zdravo, {{user.firstName}} ! Tvoj ID je {{user._id}}</p>
 
-
-<div class="row" *ngIf="showText">
-
-  <h1>Ime ljubimca: {{petsName}}</h1>
-  <h3>Kategorija: {{petsCategory}}</h3>
-  <h3>Starost: {{petsAge}} {{_age}}</h3>
-  <h3>Pol: {{petsGender}}</h3>
-  <h3>Rasa: {{petsBreed}}</h3>
-
-  <div class="col-4">
-    <button class="btn btn-dark" (click)="onclick()">Izmeni podatke o svom ljubimcu</button>
-  </div>
 </div>
 
-<div class="col-4">
-  <button class="btn btn-dark" (click)="onclick()" *ngIf="!showText">Dodaj svog ljubimca</button>
-</div>
+<div class="row">
 
-  <div class="row">
+  <div class="col" *ngIf="showText">
+    <div class="row">
+      <div class="col">
+        <h3>Ime ljubimca: {{petsName}}</h3>
+        <h6>Kategorija: {{petsCategory}}</h6>
+        <h6>Rasa: {{petsBreed}}</h6>
+        <h6>Starost: {{petsAge}} {{_age}}</h6>
+        <h6>Pol: {{petsGender}}</h6>
+      </div>
 
-    <div class="col-4 offset-3" *ngIf="visible">
+      <div class="col">
+        <img src="../assets/img/dog-solid.svg" alt="" width="50%">
+      </div>
+    </div>
+
+      <div class="row-2">
+        <button class="btn btn-dark" (click)="onclick()">Izmeni podatke o svom ljubimcu</button>
+      </div>
+
+    <div class="row-2">
+      <button class="btn btn-dark" (click)="onclick()" *ngIf="!showText">Dodaj svog ljubimca</button>
+    </div>
+
+    <div class="row-2" *ngIf="visible">
       <form [formGroup]="form">
-
 
         <div class="form-group">
           <input formControlName="name" type="text" class="form-control" id="name" placeholder="Ime ljubimca">
@@ -55,14 +56,14 @@
           <input formControlName="age" type="number" class="form-control" id="age" placeholder="Godina">
           <small class="text-danger" *ngIf="age?.touched && age?.errors?.['required']">Godina ljubimca je obavezna!</small>
         </div>
+
         <div class="form-group">
           <label for="registration">Molim da unesete vaš ID:</label>
           <input formControlName="registration" type="number" class="form-control" id="registration" >
           <small class="text-danger" *ngIf="registration?.touched && registration?.errors?.['required']">Registracija je obavezna!</small>
         </div>
 
-
-        <div class="row-2 offset-8">
+        <div class="row offset-8">
           <div class="col">
             <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="updatePet()" *ngIf="showText">Izmeni</button>
           </div>
@@ -70,22 +71,21 @@
             <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="addPet()" *ngIf="!showText">Dodaj</button>
           </div>
 
-      </div>
+        </div>
       </form>
     </div>
   </div>
 
+  <div class="col-5" >
+    <h3>Ostali korisnici My Pets aplikacije:</h3>
+    <div class= "card" *ngFor="let item of pets">
+      <p class="card-item"> <b>Ime: </b> {{item.name}} </p>
+      <p class="card-item"> <b>Kategorija:</b> {{item.category}} </p>
+      <p class="card-item"> <b>Rasa:</b> {{item.breed}} </p>
+      <p class="card-item"> <b>Starost:</b> {{item.age}} </p>
+      <p class="card-item"> <b>Pol:</b> {{item.gender}} </p>
+    </div>
+  </div>
 
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-		<!-- <button class="btn btn-link" (click)="onDelete(user)">Delete</button> -->

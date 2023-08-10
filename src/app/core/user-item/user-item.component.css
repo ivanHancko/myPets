@@ -2,15 +2,15 @@
   text-align: end;
   padding-right: 10px;
 }
-nav {
+.wellcome {
   background-color: rgb(255, 253, 127);
   text-align: end;
-
-
 }
-a {
-  margin-right: 10px;
-}
+
 .brand {
+  margin-left: 10px;
+}
+
+.card-item {
   margin-left: 10px;
 }
