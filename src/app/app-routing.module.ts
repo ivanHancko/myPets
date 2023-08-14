@@ -11,12 +11,13 @@ import { PetItemComponent } from './pet-item/pet-item.component';
 const routes: Routes = [
   {path: 'home', component: HomeComponent },
   {path: 'about', component: AboutComponent },
+  {path: 'login', component: LoginComponent },
   {path: 'singup', component: SingupComponent },
   {path: 'user', component: UserItemComponent },
   {path: 'user/:id', component: UserItemComponent },
-  {path: 'pet', component: PetItemComponent },
-  {path: 'pet/:id', component: PetItemComponent },
-  {path: 'login', component: LoginComponent },
+  {path: 'pets', component: PetItemComponent },
+  {path: 'pets/:id', component: PetItemComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
 
 ];

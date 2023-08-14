@@ -1,7 +1,9 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Pet, User } from 'src/app/model/mypets.model';
+import { PetItemComponent } from 'src/app/pet-item/pet-item.component';
 import { MypetsService } from 'src/app/service/mypets.service';
 
 @Component({
@@ -10,7 +12,9 @@ import { MypetsService } from 'src/app/service/mypets.service';
   styleUrls: ['./user-item.component.css']
 })
 export class UserItemComponent implements OnInit {
-@Input() user: User = new User();
+
+user: User = new User();
+
 pet: Pet = new Pet();
 
 pets: Pet [] = [];
@@ -20,14 +24,7 @@ petId: number =-1;
 visible:boolean = false
 showText: boolean = false;
 errorText: boolean = false;
-firstName: string = ""
-lastName: string = "";
 _email: string = "";
-petsName: string = "";
-petsCategory: string = "";
-petsBreed: string = "";
-petsGender: string = "";
-petsAge: number = NaN;
 _age: string = "";
 _gender: string = "";
 
@@ -50,7 +47,7 @@ get age() { return this.form.get("age"); }
 get registration() { return this.form.get("registration"); }
 
 
-  constructor(private service: MypetsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private service: MypetsService, private route: ActivatedRoute, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -70,31 +67,15 @@ get registration() { return this.form.get("registration"); }
 
         for(let item of data) {
           if(this.user._id === item.registration) {
-
-            console.log(this.user._id, item.registration);
-
+            this.pet = item;
             this.showText= true
-            this.petsName = item.name;
-            this.petsCategory = item.category;
-            this.petsBreed = item.breed;
-            this.petsGender = item.gender;
-              if(item.gender == "Muški"){
-                this._gender = "On"
-              }else{
-                this._gender = "Ona"
-              }
-
-            this.petsAge = item.age;
-              if(item.age == 1) {
+              if(item.age < 2) {
                 this._age = "godinu"
-              }else if (item.age >=2) {
+              }else if (item.age < 5) {
                 this._age = "godine"
-              }else if(item.age >=5) {
+              }else {
                 this._age = "godina"
-              }
-
-            console.log(data);
-
+            }
           }
         }
       }
@@ -104,18 +85,19 @@ get registration() { return this.form.get("registration"); }
   getUser(): void {
     this.service.getOne(this.userId).subscribe({
       next: (data: User) => {
-        console.log(data);
         this.user = data
+        console.log(data);
       }
     })
   }
 
   getPet () :void {
-    let id:number = this.userId
+    let id:number = this.pet._id
     if(id){
       this.service.getPet(id).subscribe({
         next: (data:Pet) => {
           console.log(data);
+          this.pet = data;
           let pet: Pet = new Pet(data)
           this.form.patchValue(pet)
         }
@@ -166,11 +148,18 @@ addPet(): void {
         }
     });
     }
-
   }
 
   onclick() : void {
     this.visible = !this.visible
+  }
+
+  openMenu(): void {
+
+    const modalRef = this.modalService.open(PetItemComponent);
+    modalRef.componentInstance.pet = this.pet;
+    console.log(this.pet, this.pets);
+
   }
 
 }

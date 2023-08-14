@@ -27,6 +27,7 @@ export class MypetsService {
       return new User(data);
     }))
   }
+
   delete(user: User): Observable<User> {
     return this.http.delete(url + '/' + user._id).pipe(map((data:any) => {
       return new User(data);
@@ -39,16 +40,16 @@ export class MypetsService {
     }))
   }
 
-getPet (id: number) : Observable<Pet> {
-  return this.http.get('http://localhost:3000/api/pets' + id).pipe(map((data:any) => {
-    return new Pet(data);
-  }))
-}
-
+  getPet (id: number) : Observable<Pet> {
+    return this.http.get('http://localhost:3000/api/pets/' + id).pipe(map((data:any) => {
+      return new Pet(data);
+    }))
+  }
 
   add(pet: Pet) : Observable<any> {
     return this.http.post('http://localhost:3000/api/pets', pet)
   }
+
   update(pet: Pet): Observable<any> {
     return this.http.put('http://localhost:3000/api/pets/' + pet._id, pet);
   }

@@ -1,5 +1,7 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { MypetsService } from '../service/mypets.service';
 import { Pet, User } from './../model/mypets.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pet-item',
@@ -8,12 +10,46 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PetItemComponent implements OnInit {
 
-  @Input() user : User = new User();
-  @Input() pet: Pet = new Pet();
+  pet: Pet = new Pet();
+  user: User [] = [];
+  petId: number = -1;
 
-  constructor() { }
+  userFirstName: string = '';
+  userLastName: string = '';
+
+  constructor(private service: MypetsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      this.petId = params['id'];
+      this.getPet()
+      this.getUsers()
+    })
+  }
+
+  getPet () :void {
+    let id:number = this.petId;
+    this.service.getPet(id).subscribe({
+      next: (data:Pet) => {
+        this.pet = data
+        console.log(data);
+      }
+    })
+  }
+
+  getUsers() : void {
+    this.service.getUsers().subscribe({
+      next: (data:User[]) => {
+        this.user = data
+        for(let item of data) {
+          if(this.pet.registration === item._id) {
+            console.log(this.pet.registration, item._id);
+            this.userFirstName = item.firstName;
+            this.userLastName = item.lastName;
+          }
+        }
+      }
+    })
   }
 
 }
