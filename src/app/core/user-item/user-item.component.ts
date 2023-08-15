@@ -1,9 +1,7 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 import { Pet, User } from 'src/app/model/mypets.model';
-import { PetItemComponent } from 'src/app/pet-item/pet-item.component';
 import { MypetsService } from 'src/app/service/mypets.service';
 
 @Component({
@@ -47,7 +45,7 @@ get age() { return this.form.get("age"); }
 get registration() { return this.form.get("registration"); }
 
 
-  constructor(private service: MypetsService, private route: ActivatedRoute, private router: Router, private modalService: NgbModal) { }
+  constructor(private service: MypetsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -86,7 +84,6 @@ get registration() { return this.form.get("registration"); }
     this.service.getOne(this.userId).subscribe({
       next: (data: User) => {
         this.user = data
-        console.log(data);
       }
     })
   }
@@ -154,12 +151,6 @@ addPet(): void {
     this.visible = !this.visible
   }
 
-  openMenu(): void {
 
-    const modalRef = this.modalService.open(PetItemComponent);
-    modalRef.componentInstance.pet = this.pet;
-    console.log(this.pet, this.pets);
-
-  }
 
 }

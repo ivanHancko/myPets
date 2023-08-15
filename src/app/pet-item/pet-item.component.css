@@ -1,0 +1,20 @@
+.text {
+  text-align: end;
+  padding-right: 10px;
+}
+.wellcome {
+  background-color: rgb(255, 253, 127);
+  text-align: end;
+}
+
+.brand {
+  margin-left: 10px;
+}
+
+.card-item {
+  margin-left: 10px;
+}
+
+form {
+  margin-top: 20px;
+}

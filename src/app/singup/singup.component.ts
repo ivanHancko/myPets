@@ -1,6 +1,5 @@
 import { User } from './../model/mypets.model';
-import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import { MypetsService } from '../service/mypets.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +17,8 @@ validPasswords: boolean = true;
 idUser: number = 0;
 
 item: User[] = [];
-  constructor(private service: MypetsService,private modalService: NgbModal, private router: Router) { }
+
+  constructor(private service: MypetsService, private router: Router) { }
 
   form: FormGroup = new FormGroup ({
     firstName: new FormControl('', [Validators.required]),

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MypetsService } from '../service/mypets.service';
 import { User } from '../model/mypets.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service: MypetsService, private modalService: NgbModal, private route: ActivatedRoute, private router: Router) { }
+  constructor(private service: MypetsService, private router: Router) { }
 
 user: User[] = []
 userId: number = 0;
