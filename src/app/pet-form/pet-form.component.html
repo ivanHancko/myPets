@@ -1,0 +1,50 @@
+<div class="row-2">
+  <form [formGroup]="form" class="col-6">
+
+    <div class="form-group">
+      <label for="name">Ime ljubimca:</label>
+      <input formControlName="name" type="text" class="form-control" id="name" placeholder="Ime ljubimca">
+      <small class="text-danger" *ngIf="name?.touched && name?.errors?.['required']">Ime je obavezno!</small>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Kategorija:</label>
+      <input formControlName="category" type="text" class="form-control" id="category" placeholder="Kategorija">
+      <small class="text-danger" *ngIf="category?.touched && category?.errors?.['required']">Kategorija je obavezna!</small>
+    </div>
+
+    <div class="form-group">
+      <label for="breed">Rasa:</label>
+      <input formControlName="breed" type="text" class="form-control" id="breed" placeholder="Rasa">
+      <small class="text-danger" *ngIf="breed?.touched && breed?.errors?.['required']">Rasa je obavezna!</small>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Pol ljubimca:</label>
+      <input formControlName="gender" type="text" class="form-control" id="gender" placeholder="Pol">
+      <small class="text-danger" *ngIf="gender?.touched && gender?.errors?.['required']">Pol je obavezan!</small>
+    </div>
+
+    <div class="form-group">
+      <label for="age">Koliko godina ima ljubimac:</label>
+      <input formControlName="age" type="number" class="form-control" id="age" placeholder="Godina">
+      <small class="text-danger" *ngIf="age?.touched && age?.errors?.['required']">Godina ljubimca je obavezna!</small>
+    </div>
+
+    <div class="form-group">
+      <label for="registration">Molim da unesete vaš ID:</label>
+      <input formControlName="registration" type="number" class="form-control" id="registration" >
+      <small class="text-danger" *ngIf="registration?.touched && registration?.errors?.['required']">Registracija je obavezna!</small>
+    </div>
+
+    <div class="row offset-8">
+      <div class="col">
+        <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="updatePet()" *ngIf="showText">Izmeni</button>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="addPet()" *ngIf="!showText">Dodaj</button>
+      </div>
+
+    </div>
+  </form>
+</div>

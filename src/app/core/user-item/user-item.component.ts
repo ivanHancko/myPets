@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Pet, User } from 'src/app/model/mypets.model';
 import { MypetsService } from 'src/app/service/mypets.service';
@@ -27,24 +26,6 @@ _age: string = "";
 _gender: string = "";
 
 
-form: FormGroup = new FormGroup ({
-  name: new FormControl('', [Validators.required]),
-  category: new FormControl('', [Validators.required]),
-  breed: new FormControl('', [Validators.required]),
-  gender: new FormControl('', [Validators.required]),
-  age: new FormControl(0, [Validators.required]),
-  registration: new FormControl(0, [Validators.required]),
-})
-
-
-get name() { return this.form.get("name"); }
-get category() { return this.form.get("category"); }
-get breed() { return this.form.get("breed"); }
-get gender() { return this.form.get("gender"); }
-get age() { return this.form.get("age"); }
-get registration() { return this.form.get("registration"); }
-
-
   constructor(private service: MypetsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -54,26 +35,27 @@ get registration() { return this.form.get("registration"); }
       this.petId = this.userId
       this.getUser()
       this.getPets()
-      this.getPet()
     })
   }
 
   getPets() : void {
     this.service.getPets().subscribe({
       next: (data:Pet[]) => {
-        this.pets = data
+        this.pets = data;
 
         for(let item of data) {
           if(this.user._id === item.registration) {
             this.pet = item;
-            this.showText= true
-              if(item.age < 2) {
-                this._age = "godinu"
-              }else if (item.age < 5) {
-                this._age = "godine"
-              }else {
-                this._age = "godina"
-            }
+            this.showText= true;
+            if(item.age < 2) {
+              this._age = "godinu";
+            }else if (item.age < 5) {
+              this._age = "godine";
+            }else {
+              this._age = "godina";
+          }
+          }else{
+            this.showText= false;
           }
         }
       }
@@ -88,69 +70,8 @@ get registration() { return this.form.get("registration"); }
     })
   }
 
-  getPet () :void {
-    let id:number = this.pet._id
-    if(id){
-      this.service.getPet(id).subscribe({
-        next: (data:Pet) => {
-          console.log(data);
-          this.pet = data;
-          let pet: Pet = new Pet(data)
-          this.form.patchValue(pet)
-        }
-      })
-    }
-  }
-
-  updatePet(): void {
-    let pet: Pet = new Pet(this.form.value)
-    console.log(this.pet._id);
-
-    for(let item of this.pets) {
-      if(this.user._id == item.registration){
-        let id: number = item._id
-        this.errorText = false;
-        if (id) {
-          pet._id = id;
-          if(this.registration?.value != item.registration){
-            alert('Molim unesite vaš ID broj!')
-            console.log(this.registration?.value, item.registration);
-            return;
-          }else{
-            this.service.update(pet).subscribe({
-              next: (response: any) => {
-                this.ngOnInit()
-                this.visible = false
-              }
-            });
-          }
-        }
-      }
-    }
-  }
-
-addPet(): void {
-  let pet: Pet = new Pet(this.form.value)
-
-    if(this.registration?.value != this.user._id){
-      alert('Molim unesite vaš ID broj!')
-      console.log(this.registration?.value, this.user._id);
-      return;
-    }else{
-    this.service.add(pet).subscribe({
-      next :(book: any) => {
-        console.log(book);
-        this.ngOnInit()
-        this.visible = false
-        }
-    });
-    }
-  }
-
   onclick() : void {
     this.visible = !this.visible
   }
-
-
 
 }

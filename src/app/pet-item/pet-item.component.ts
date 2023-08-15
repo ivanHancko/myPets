@@ -16,6 +16,7 @@ export class PetItemComponent implements OnInit {
 
   userFirstName: string = '';
   userLastName: string = '';
+  age: string = '';
 
   constructor(private service: MypetsService, private route: ActivatedRoute, private router: Router, private modalService: NgbModal) { }
 
@@ -32,6 +33,13 @@ export class PetItemComponent implements OnInit {
           if(this.pet.registration === item._id) {
             this.userFirstName = item.firstName;
             this.userLastName = item.lastName;
+          }
+          if(this.pet.age < 2) {
+            this.age = "godinu";
+          }else if (this.pet.age < 5) {
+            this.age = "godine";
+          }else {
+            this.age = "godina";
           }
         }
       }

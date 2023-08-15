@@ -7,14 +7,23 @@
   text-align: end;
 }
 
-.brand {
-  margin-left: 10px;
+
+.card {
+  padding: 10px;
+width: auto;
 }
 
-.card-item {
-  margin-left: 10px;
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-form {
-  margin-top: 20px;
+@media screen and (max-width:768px)  {
+  .row{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
 }
