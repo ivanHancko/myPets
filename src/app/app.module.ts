@@ -15,6 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { UserItemComponent } from './core/user-item/user-item.component';
 import { PetItemComponent } from './pet-item/pet-item.component';
 import { PetFormComponent } from './pet-form/pet-form.component';
+import { PetsComponent } from './pets/pets.component';
+
 
 
 
@@ -32,7 +34,8 @@ import { PetFormComponent } from './pet-form/pet-form.component';
     LoginComponent,
     UserItemComponent,
     PetItemComponent,
-    PetFormComponent
+    PetFormComponent,
+    PetsComponent
   ],
   imports: [
     BrowserModule,

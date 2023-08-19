@@ -1,15 +1,16 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { MypetsService } from '../service/mypets.service';
-import { Pet, User } from './../model/mypets.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { Pet, User } from '../model/mypets.model';
+import { MypetsService } from '../service/mypets.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PetItemComponent } from '../pet-item/pet-item.component';
 
 @Component({
-  selector: 'app-pet-item',
-  templateUrl: './pet-item.component.html',
-  styleUrls: ['./pet-item.component.css']
+  selector: 'app-pets',
+  templateUrl: './pets.component.html',
+  styleUrls: ['./pets.component.css']
 })
-export class PetItemComponent implements OnInit {
+export class PetsComponent implements OnInit {
 
   @Input() pet: Pet = new Pet();
   user: User [] = [];

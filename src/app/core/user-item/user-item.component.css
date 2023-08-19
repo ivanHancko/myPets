@@ -7,6 +7,16 @@
   text-align: end;
 }
 
+.allPets{
+ width: 40%;
+
+
+}
+
+.col{
+  padding: 10px;
+}
+
 .brand {
   margin-left: 10px;
 }
@@ -17,4 +27,31 @@
 
 form {
   margin-top: 20px;
+}
+b {
+  color: goldenrod;
+}
+*{
+  color: rgb(74, 121, 123);
+}
+
+@media screen and (max-width:768px) {
+  .single{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #userComponent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .allPets{
+    width: 80%;
+    text-align: center;
+   }
+
 }

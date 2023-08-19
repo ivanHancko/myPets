@@ -38,7 +38,7 @@ get password() {
     this.service.getUsers().subscribe({
       next: (data: User[]) =>{
         for (let i of data) {
-          if (i.email == this.form.value.email && i.password == this.password?.value){
+          if (i.email === this.form.value.email && i.password === this.password?.value){
             this.ifLogged = true;
             this.form.reset()
             this.router.navigate(['/user/', i._id]);
