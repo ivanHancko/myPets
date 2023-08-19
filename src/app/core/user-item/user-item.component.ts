@@ -48,7 +48,7 @@ _gender: string = "";
 
         for(let item of data) {
           if(this.user._id === item.registration) {
-            this.showText= true;
+
             this.pet = item;
             if(item.age < 2) {
               this._age = "godinu";
@@ -57,6 +57,9 @@ _gender: string = "";
             }else {
               this._age = "godina";
             }
+          }
+          if(this._age===''){
+            this.showText= true;
           }else{
             this.showText= false;
           }

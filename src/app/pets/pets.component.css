@@ -26,7 +26,7 @@ b {
   color: rgb(74, 121, 123);
 }
 img{
-  width: 75%;
+  width: 50%;
 }
 
 @media screen and (max-width:768px)  {
