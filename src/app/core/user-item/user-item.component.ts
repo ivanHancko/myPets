@@ -26,7 +26,7 @@ errorText: boolean = false;
 _email: string = "";
 _age: string = "";
 _gender: string = "";
-
+url: any = document.getElementById("login");
 
   constructor(private service: MypetsService, private route: ActivatedRoute, private modalService: NgbModal) { }
 
@@ -37,6 +37,7 @@ _gender: string = "";
       this.petId = this.userId
       this.getUser()
       this.getPets()
+      this.url.innerHTML = 'Odjavi se!'
     })
   }
 
@@ -48,7 +49,6 @@ _gender: string = "";
 
         for(let item of data) {
           if(this.user._id === item.registration) {
-
             this.pet = item;
             if(item.age < 2) {
               this._age = "godinu";

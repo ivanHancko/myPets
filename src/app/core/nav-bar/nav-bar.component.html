@@ -5,20 +5,17 @@
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
-
-    </ul>
-    <ul class="navbar-nav ms-auto">
       <li class="nav-item">
         <a class="nav-link"  [routerLink]="['home']" >Početna</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['about']"  >O nama</a>
       </li>
+    </ul>
+    <ul class="navbar-nav ms-auto" >
+
       <li class="nav-item">
-        <a class="nav-link"  [routerLink]="['singup']" >Registracija</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['login']"  >Prijava</a>
+        <a id="login" class="nav-link" [routerLink]="['login']"  >Prijava</a>
       </li>
     </ul>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { MypetsService } from '../service/mypets.service';
 import { User } from '../model/mypets.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -15,10 +15,8 @@ export class LoginComponent implements OnInit {
 
 user: User[] = []
 userId: number = 0;
-
-
 ifLogged: boolean = true;
-
+url: any = document.getElementById("login");
 form: FormGroup = new FormGroup ({
   email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
   password: new FormControl('', [Validators.required])
@@ -32,7 +30,12 @@ get password() {
 }
 
   ngOnInit(): void {
+    this.url.innerHTML = 'Prijava'
   }
+
+
+
+
 
   getUser(): void {
     this.service.getUsers().subscribe({
@@ -52,3 +55,5 @@ get password() {
   }
 
 }
+
+
