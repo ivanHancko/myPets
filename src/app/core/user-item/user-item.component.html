@@ -1,5 +1,6 @@
 <div class="wellcome">
-        <a class="nav-link" [routerLink]="['/user/', user._id]">Zdravo, <b> {{user.firstName}} {{user.lastName}}</b>! Tvoj ID je <b>{{user._id}}</b> </a>
+  <a class="nav-link" [routerLink]="['/user/', user._id]">Zdravo, <b> {{user.firstName}} {{user.lastName}}</b>! Tvoj ID
+    je <b>{{user._id}}</b> </a>
 </div>
 
 <div class="row" id="userComponent">
@@ -18,20 +19,26 @@
       </div>
 
       <div class="row-2">
-        <button class="btn btn-warning" (click)="onclick()"  *ngIf="!showText">Izmeni podatke o svom ljubimcu</button>
+        <button class="btn btn-warning" (click)="onclick()" *ngIf="!showText">Izmeni podatke o svom ljubimcu</button>
       </div>
       <div class="row-2">
-        <button class="btn btn-warning" (click)="onclick()" *ngIf="showText" >Dodaj svog ljubimca</button>
+        <button class="btn btn-warning" (click)="onclick()" *ngIf="showText">Dodaj svog ljubimca</button>
       </div>
     </div>
   </div>
 
-  <div class="allPets" >
+  <div class="allPets">
     <h5>Ostali korisnici My Pets aplikacije:</h5>
     <div *ngFor="let item of pets">
       <app-pets [pet]="item"></app-pets>
     </div>
   </div>
 
+  <app-pagination>
+    [page]="params.page"
+    [pageSize]="params.pageSize"
+    [collectionSize]="countPet"
+    (pageChange)="onPageChanged($event)"
+    (pageSizeChange)="onPageSizeChanged($event)">
+  </app-pagination>
 </div>
-

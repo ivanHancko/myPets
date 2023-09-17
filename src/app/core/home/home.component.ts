@@ -5,18 +5,16 @@ import { MypetsService } from 'src/app/service/mypets.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   slides: SlideShow[] = [];
 
-  constructor(private service: MypetsService) { }
+  constructor(private service: MypetsService) {}
 
   ngOnInit(): void {
-    this.getSlide()
+    this.getSlide();
   }
-
 
   getSlide(): void {
     this.service.getSlideShow().subscribe({
@@ -28,5 +26,4 @@ export class HomeComponent implements OnInit {
       },
     });
   }
-
 }

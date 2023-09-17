@@ -1,53 +1,70 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Pet, SlideShow, User } from '../model/mypets.model';
 
-const url = 'http://localhost:3000/api/user'
+const url = 'http://localhost:3000/api/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MypetsService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getUsers () : Observable<User[]> {
-    return this.http.get(url).pipe(map((data:any) => {
-      return data.map((elem:any) => new User(elem))
-    }))
+  getUsers(): Observable<User[]> {
+    return this.http.get(url).pipe(
+      map((data: any) => {
+        return data.map((elem: any) => new User(elem));
+      })
+    );
   }
 
-  addUser(user: User) : Observable<any> {
-    return this.http.post(url + '/', user)
+  addUser(user: User): Observable<any> {
+    return this.http.post(url + '/', user);
   }
 
   getOne(id: number): Observable<User> {
-    return this.http.get(url +  '/' + id).pipe(map((data:any) => {
-      return new User(data);
-    }))
+    return this.http.get(url + '/' + id).pipe(
+      map((data: any) => {
+        return new User(data);
+      })
+    );
   }
 
   delete(user: User): Observable<User> {
-    return this.http.delete(url + '/' + user._id).pipe(map((data:any) => {
-      return new User(data);
-    }))
+    return this.http.delete(url + '/' + user._id).pipe(
+      map((data: any) => {
+        return new User(data);
+      })
+    );
   }
 
-  getPets () : Observable<Pet[]> {
-    return this.http.get('http://localhost:3000/api/pets').pipe(map((data:any) => {
-      return data.map((elem:any) => new Pet(elem))
-    }))
+  getPets(params: any): Observable<Pet[]> {
+    let options = {};
+    if (params) {
+      options = {
+        params: new HttpParams()
+          .set('page', params.page || '')
+          .set('pageSize', params.pageSize || ''),
+      };
+    }
+    return this.http.get('http://localhost:3000/api/pets', options).pipe(
+      map((data: any) => {
+        return data.map((elem: any) => new Pet(elem));
+      })
+    );
   }
 
-  getPet (id: number) : Observable<Pet> {
-    return this.http.get('http://localhost:3000/api/pets/' + id).pipe(map((data:any) => {
-      return new Pet(data);
-    }))
+  getPet(id: number): Observable<Pet> {
+    return this.http.get('http://localhost:3000/api/pets/' + id).pipe(
+      map((data: any) => {
+        return new Pet(data);
+      })
+    );
   }
 
-  add(pet: Pet) : Observable<any> {
-    return this.http.post('http://localhost:3000/api/pets', pet)
+  add(pet: Pet): Observable<any> {
+    return this.http.post('http://localhost:3000/api/pets', pet);
   }
 
   update(pet: Pet): Observable<any> {
@@ -61,6 +78,4 @@ export class MypetsService {
       })
     );
   }
-
-
 }

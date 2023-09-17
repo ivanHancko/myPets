@@ -10,7 +10,8 @@
     <div class="form-group">
       <label for="category">Kategorija:</label>
       <input formControlName="category" type="text" class="form-control" id="category" placeholder="Kategorija">
-      <small class="text-danger" *ngIf="category?.touched && category?.errors?.['required']">Kategorija je obavezna!</small>
+      <small class="text-danger" *ngIf="category?.touched && category?.errors?.['required']">Kategorija je
+        obavezna!</small>
     </div>
 
     <div class="form-group">
@@ -33,16 +34,19 @@
 
     <div class="form-group">
       <label for="registration">Molim da unesete vaš ID:</label>
-      <input formControlName="registration" type="number" class="form-control" id="registration" >
-      <small class="text-danger" *ngIf="registration?.touched && registration?.errors?.['required']">Registracija je obavezna!</small>
+      <input formControlName="registration" type="number" class="form-control" id="registration">
+      <small class="text-danger" *ngIf="registration?.touched && registration?.errors?.['required']">Registracija je
+        obavezna!</small>
     </div>
 
     <div class="row ">
       <div class="col">
-        <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="updatePet()" *ngIf="showText">Izmeni</button>
+        <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="updatePet()"
+          *ngIf="showText">Izmeni</button>
       </div>
       <div class="col">
-        <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="addPet()" *ngIf="!showText">Dodaj</button>
+        <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="addPet()"
+          *ngIf="!showText">Dodaj</button>
       </div>
 
     </div>
